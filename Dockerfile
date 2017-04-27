@@ -15,4 +15,9 @@ RUN npm i -g cordova ionic gulp bower grunt phonegap && npm cache clean
 # Create dummy app to build and preload gradle and maven dependencies
 RUN cd / && echo 'n' | ionic start app && cd /app && ionic platform add android && ionic build android && rm -rf * .??* && rm /root/.android/debug.keystore
 
+RUN apt-get update && apt-get install -y ruby-full && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    apt-get autoremove -y && \
+    apt-get clean
+
 WORKDIR /app
